@@ -1,0 +1,44 @@
+@import "../../../styles.scss";
+
+.modal {
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.2);
+  transition: opacity 250ms ease-in;
+
+  &.open {
+    visibility: inherit;
+    opacity: 1;
+  }
+
+  .modal-box {
+    input {
+      margin: 15px 0;
+    }
+
+    .buttons {
+      margin-top: 5px;
+
+      button {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/* .modal-box {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    margin: 15px 0;
+  }
+} */

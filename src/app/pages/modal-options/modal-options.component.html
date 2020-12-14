@@ -1,0 +1,16 @@
+<ng-container *ngIf="display$ | async as display">
+  <div class="modal" [class.open]="display === 'open'" (click)="close()">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <h1 class="title">{{titleModal}}</h1>
+      <input #titleInput type="text" value="" [placeholder]="placeholder"
+        class="input has-background-light is-medium" />
+      <div class="buttons is-right">
+        <button class="button is-medium" (click)="close()">{{cancelButton}}</button>
+        <!-- <button class="button is-primary has-text-white is-medium"
+          (click)="createList(titleInput.value)">{{createButton}}</button> -->
+        <button class="button is-primary has-text-white is-medium"
+          (click)="switchOption(titleInput.value)">{{createButton}}</button>
+      </div>
+    </div>
+  </div>
+</ng-container>
