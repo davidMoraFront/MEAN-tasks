@@ -90,6 +90,11 @@
         }
       }
 
+      &.completed > p {
+        text-decoration: line-through;
+        opacity: 0.8;
+      }
+
       .options-task {
         transition: opacity 0.2s, transform 0.2s;
         opacity: 0;

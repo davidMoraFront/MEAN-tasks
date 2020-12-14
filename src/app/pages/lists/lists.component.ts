@@ -70,8 +70,11 @@ export class ListsComponent implements OnInit {
       .subscribe((tasks: any[]) => (this.tasks = tasks));
   }
 
-  isCompleted(task: Task): boolean {
-    return !task.completed;
+  isCompleted(task: Task): void {
+    this.taskService.complete(task).subscribe(() => {
+      console.log('Completed successfully');
+      task.completed = !task.completed;
+    });
   }
 
   open(option: string) {
