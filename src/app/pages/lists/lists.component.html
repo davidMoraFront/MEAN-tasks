@@ -26,7 +26,7 @@
         </div>
         <h3 *ngIf="!tasks">{{ noListSelectedText }}</h3>
         <div class="task-menu">
-          <!-- <h3 *ngIf="tasks.length === 0">{{ noTaskText }}</h3> -->
+          <h3 *ngIf="tasks && tasks.length === 0">{{ noTaskText }}</h3>
           <div *ngFor="let task of tasks" class="task" (click)="isCompleted(task)"
             [ngClass]="{ completed: task.completed }">
             <p>{{ task.title }}</p>
