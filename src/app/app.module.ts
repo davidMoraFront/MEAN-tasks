@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ListsComponent } from './pages/lists/lists.component';
 import { ModalOptionsComponent } from './pages/modal-options/modal-options.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { WebReqInterceptorService } from './services/web-req-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
     ModalOptionsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: WebReqInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
   // schemas: [NO_ERRORS_SCHEMA],
 })
