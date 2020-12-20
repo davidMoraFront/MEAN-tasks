@@ -50,6 +50,7 @@
     padding: 40px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+    overflow: auto;
 
     .container-task-option-list {
       display: flex;
@@ -111,6 +112,10 @@
       display: flex;
       justify-content: flex-end;
       margin-top: 10px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 40px;
 
       button {
         border-radius: 50%;

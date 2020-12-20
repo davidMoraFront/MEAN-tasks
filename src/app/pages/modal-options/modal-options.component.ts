@@ -52,7 +52,7 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
     this.modalService.close();
   }
 
-  createList(title: string) {
+  newList(title: string) {
     this.subs = this.taskService
       .createList(title)
       .subscribe((response: any) => console.log(response));
@@ -60,7 +60,7 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
 
   editList(title: string) {}
 
-  createTask(title: string) {
+  newTask(title: string) {
     console.log(this.listId);
     this.subs = this.taskService
       .createTask(this.listId, title)
@@ -97,7 +97,8 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
   switchOption(title: string) {
     switch (this.option) {
       case 'newList': {
-        this.createList(title);
+        this.newList(title);
+        this.add.emit(this.listId);
         break;
       }
       case 'editList': {
@@ -105,7 +106,7 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
         break;
       }
       case 'newTask': {
-        this.createTask(title);
+        this.newTask(title);
         this.add.emit(this.listId);
         break;
       }

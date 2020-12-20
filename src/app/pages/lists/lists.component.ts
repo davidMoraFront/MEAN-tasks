@@ -25,23 +25,12 @@ export class ListsComponent implements OnInit {
   optionActive: string = '';
   listIdActive: string = '';
   private routeSub: Subscription;
-  private subs: Subscription;
 
   constructor(
     private taskService: TaskService,
     private modalService: ModalService,
     private route: ActivatedRoute
-  ) {
-    // loads the tasks even though it doesn't activate the class from the list
-    /* this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
-    this.subs = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.router.navigated = false;
-      }
-    }); */
-  }
+  ) {}
 
   ngOnInit(): void {
     this.taskService
@@ -53,7 +42,7 @@ export class ListsComponent implements OnInit {
           this.listIdActive = params.listId;
           this.taskService
             .getTasks(params.listId)
-            .subscribe((tasks: any[]) => (this.tasks = tasks));
+            .subscribe((tasks: Task[]) => (this.tasks = tasks));
         }
       );
     }
@@ -63,11 +52,18 @@ export class ListsComponent implements OnInit {
     if (this.routeSub) this.routeSub.unsubscribe();
   }
 
-  loadTask(listId: string) {
-    this.listIdActive = listId;
-    this.taskService
-      .getTasks(listId)
-      .subscribe((tasks: any[]) => (this.tasks = tasks));
+  loadData(listId: string) {
+    setTimeout(
+      () => (
+        this.taskService
+          .getLists()
+          .subscribe((lists: List[]) => (this.lists = lists)),
+        this.taskService
+          .getTasks(listId)
+          .subscribe((tasks: Task[]) => (this.tasks = tasks))
+      ),
+      0
+    );
   }
 
   isCompleted(task: Task): void {
