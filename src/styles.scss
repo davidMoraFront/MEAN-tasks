@@ -65,4 +65,13 @@ body {
   border-radius: 5px;
   width: 350px;
   max-width: 350px;
+
+  .button-field {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  a {
+    margin: 0 5px;
+  }
 }

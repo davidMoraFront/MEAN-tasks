@@ -3,10 +3,12 @@ import { ModalOptionsComponent } from './pages/modal-options/modal-options.compo
 import { ListsComponent } from './pages/lists/lists.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'lists', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   {
     path: 'lists',
     component: ListsComponent,

@@ -5,7 +5,7 @@
         <h1 class="title has-text-primary">{{ listsTitle }}</h1>
         <div class="list-menu">
           <a *ngFor="let list of lists" [routerLink]="['/lists', list._id]" routerLinkActive="is-active"
-            (click)="loadTask(list._id)">{{ list.title }}</a>
+            (click)="loadData(list._id)">{{ list.title }}</a>
         </div>
       </div>
       <button class="button is-primary has-text-white" (click)="open('newList')">

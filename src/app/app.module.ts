@@ -8,6 +8,7 @@ import { ListsComponent } from './pages/lists/lists.component';
 import { ModalOptionsComponent } from './pages/modal-options/modal-options.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { WebReqInterceptorService } from './services/web-req-interceptor.service';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { WebReqInterceptorService } from './services/web-req-interceptor.service
     LoginComponent,
     ListsComponent,
     ModalOptionsComponent,
+    SignupComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
