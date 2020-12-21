@@ -1,14 +1,11 @@
 <div class="centered-content">
   <div class="container-box">
-    <h1 class="title has-text-primary">{{loginTitle}}</h1>
+    <h1 class="title has-text-primary">{{title}}</h1>
     <div class="field">
       <p class="control has-icons-left has-icons-right">
         <input #emailInput class="input has-background-light" type="email" [placeholder]="emailPlaceholder">
         <span class="icon is-small is-left">
           <i class="fas fa-envelope"></i>
-        </span>
-        <span class="icon is-small is-right">
-          <i class="fas fa-check"></i>
         </span>
       </p>
     </div>
@@ -22,11 +19,11 @@
     </div>
     <div class="field button-field">
       <p class="control">
-        <button class="button is-success has-text-white" (click)="login(emailInput.value, passwordInput.value)">
+        <button class="button is-success has-text-white" (click)="loginSignup(emailInput.value, passwordInput.value)">
           {{buttonText}}
         </button>
       </p>
     </div>
-    <p class="has-text-grey">{{noAccount}}<a routerLink="/signup">{{signup}}</a>{{noAccountLastText}}</p>
+    <p class="has-text-grey">{{beforeLinkText}}<a routerLink="/{{link}}">{{linkText}}</a>{{afterLinkText}}</p>
   </div>
 </div>

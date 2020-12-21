@@ -17,7 +17,7 @@
         <div class="container-task-option-list">
           <h1 class="title has-text-primary">{{ tasksTitle }}</h1>
           <div class="option-list">
-            <div class="dropdown is-hoverable is-right">
+            <div class="dropdown is-hoverable is-right" *ngIf="listIdActive !== ''">
               <div class="dropdown-trigger">
                 <button class="button" aria-haspopup="true" aria-controls="option-list">
                   <div class="icon">
@@ -36,6 +36,8 @@
                 </div>
               </div>
             </div>
+            <button class="button logout is-danger" (click)="logout()"><i class="fa fa-sign-out"
+                aria-hidden="true"></i></button>
           </div>
         </div>
         <h3 *ngIf="!tasks">{{ noListSelectedText }}</h3>

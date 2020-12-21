@@ -1,9 +1,10 @@
+import { AuthService } from './../../services/auth.service';
 import { ModalService } from './../modal-options/service/modal.service';
 import { TaskService } from './../../services/task.service';
 import { Component, OnInit } from '@angular/core';
 import { List } from 'src/app/models/list.model';
 import { Task } from 'src/app/models/task.model';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -32,7 +33,8 @@ export class ListsComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private modalService: ModalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -56,6 +58,7 @@ export class ListsComponent implements OnInit {
   }
 
   loadData(listId: string) {
+    this.listIdActive = listId;
     setTimeout(
       () => (
         this.taskService
@@ -98,5 +101,9 @@ export class ListsComponent implements OnInit {
         this.tasks = this.tasks.filter((task) => task._id !== id);
         console.log(response);
       });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

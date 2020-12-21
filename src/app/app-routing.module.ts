@@ -1,14 +1,12 @@
-import { LoginComponent } from './pages/login/login.component';
-import { ModalOptionsComponent } from './pages/modal-options/modal-options.component';
+import { LoginSignupComponent } from './pages/login-signup/login-signup.component';
 import { ListsComponent } from './pages/lists/lists.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SignupComponent } from './pages/signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'lists', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginSignupComponent },
+  { path: 'signup', component: LoginSignupComponent },
   {
     path: 'lists',
     component: ListsComponent,
