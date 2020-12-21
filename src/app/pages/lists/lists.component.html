@@ -17,11 +17,25 @@
         <div class="container-task-option-list">
           <h1 class="title has-text-primary">{{ tasksTitle }}</h1>
           <div class="option-list">
-            <button class="button">
-              <div class="icon">
-                <i class="fas fa-cog"></i>
+            <div class="dropdown is-hoverable is-right">
+              <div class="dropdown-trigger">
+                <button class="button" aria-haspopup="true" aria-controls="option-list">
+                  <div class="icon">
+                    <i class="fas fa-cog"></i>
+                  </div>
+                </button>
               </div>
-            </button>
+              <div class="dropdown-menu" id="option-list" role="menu">
+                <div class="dropdown-content">
+                  <a (click)="open('editList')" class="dropdown-item">
+                    {{editText}}
+                  </a>
+                  <a (click)="deleteList(listIdActive)" class="dropdown-item has-text-danger">
+                    {{deleteText}}
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <h3 *ngIf="!tasks">{{ noListSelectedText }}</h3>
@@ -31,12 +45,12 @@
             [ngClass]="{ completed: task.completed }">
             <p>{{ task.title }}</p>
             <div class="options-task">
-              <button class="button" (click)="open('editTask')">
+              <button class="button" (click)="open('editTask', task._id)">
                 <div class="icon">
                   <i class="fas fa-edit"></i>
                 </div>
               </button>
-              <button class="button is-danger">
+              <button class="button is-danger" (click)="deleteTask(task._id)">
                 <div class="icon">
                   <i class="fas fa-trash"></i>
                 </div>
@@ -55,4 +69,5 @@
     </div>
   </div>
 </div>
-<app-modal-options [option]="optionActive" [listId]="listIdActive" (add)="loadData($event)"></app-modal-options>
+<app-modal-options [option]="optionActive" [listId]="listIdActive" [taskId]="taskIdSelected" (res)="loadData($event)">
+</app-modal-options>

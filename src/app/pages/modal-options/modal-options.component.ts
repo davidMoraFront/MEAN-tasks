@@ -23,9 +23,10 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
   @ViewChild('titleInput') titleInput: ElementRef;
   @Input() option: string;
   @Input() listId: string;
-  @Output() add: EventEmitter<string> = new EventEmitter();
+  @Input() taskId: string;
+  @Output() res: EventEmitter<string> = new EventEmitter();
   cancelButton: string = 'Cancel';
-  createButton: string = 'Create';
+  saveButton: string = 'Save';
   placeholder: string = '';
   titleModal: string = '';
   display$: Observable<'open' | 'close'>;
@@ -58,7 +59,11 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
       .subscribe((response: any) => console.log(response));
   }
 
-  editList(title: string) {}
+  editList(title: string) {
+    this.subs = this.taskService
+      .updateList(this.listId, title)
+      .subscribe((response: any) => console.log(response));
+  }
 
   newTask(title: string) {
     console.log(this.listId);
@@ -67,7 +72,11 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
       .subscribe((response: any) => console.log(response));
   }
 
-  editTask(title: string) {}
+  editTask(id: string, title: string) {
+    this.subs = this.taskService
+      .updateTask(this.listId, id, title)
+      .subscribe((response: any) => console.log(response));
+  }
 
   showOption(option: string): void {
     switch (option) {
@@ -98,7 +107,6 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
     switch (this.option) {
       case 'newList': {
         this.newList(title);
-        this.add.emit(this.listId);
         break;
       }
       case 'editList': {
@@ -107,14 +115,14 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
       }
       case 'newTask': {
         this.newTask(title);
-        this.add.emit(this.listId);
         break;
       }
       case 'editTask': {
-        this.editTask(title);
+        this.editTask(this.taskId, title);
         break;
       }
     }
+    this.res.emit(this.listId);
     this.close();
   }
 }

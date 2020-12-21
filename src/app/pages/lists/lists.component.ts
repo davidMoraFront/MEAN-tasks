@@ -18,12 +18,15 @@ export class ListsComponent implements OnInit {
   noListSelectedText: string = 'Please select a list from the sidebar';
   noTaskText: string =
     'There are no tasks here! Click the add button to create a new task.';
+  editText: string = 'Edit';
+  deleteText: string = 'Delete';
   list: List;
   task: Task;
   lists: List[];
   tasks: Task[];
   optionActive: string = '';
   listIdActive: string = '';
+  taskIdSelected: string = '';
   private routeSub: Subscription;
 
   constructor(
@@ -73,14 +76,27 @@ export class ListsComponent implements OnInit {
     });
   }
 
-  open(option: string) {
+  open(option: string, id?: string) {
+    event.stopPropagation();
     this.optionActive = option;
+    if (id !== this.listIdActive) this.taskIdSelected = id;
+    else this.taskIdSelected = '';
     this.modalService.open();
   }
 
-  createNewList() {
+  deleteList(id: string) {
+    this.taskService.deleteList(id).subscribe((response: any) => {
+      console.log(response);
+      this.listIdActive = '';
+    });
+  }
+
+  deleteTask(id: string) {
     this.taskService
-      .createList('Testing')
-      .subscribe((response: any) => console.log(response));
+      .deleteTask(this.listIdActive, id)
+      .subscribe((response: any) => {
+        this.tasks = this.tasks.filter((task) => task._id !== id);
+        console.log(response);
+      });
   }
 }
