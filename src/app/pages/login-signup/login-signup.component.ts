@@ -58,13 +58,4 @@ export class LoginSignupComponent implements OnInit {
         .subscribe((res: HttpResponse<any>) => console.log(res));
     }
   }
-
-  login(email: string, password: string) {
-    this.authService
-      .login(email, password)
-      .subscribe((res: HttpResponse<any>) => {
-        if (res.status === 200) this.router.navigate(['/lists']);
-        console.log(res);
-      });
-  }
 }
