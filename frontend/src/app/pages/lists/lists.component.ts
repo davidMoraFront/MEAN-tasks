@@ -34,7 +34,8 @@ export class ListsComponent implements OnInit {
     private taskService: TaskService,
     private modalService: ModalService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -73,14 +74,11 @@ export class ListsComponent implements OnInit {
   }
 
   isCompleted(task: Task): void {
-    this.taskService.complete(task).subscribe(() => {
-      console.log('Completed successfully');
-      task.completed = !task.completed;
-    });
+    this.taskService.complete(task).subscribe(() => task.completed = !task.completed);
   }
 
   open(option: string, id?: string) {
-    event.stopPropagation();
+    // event.stopPropagation();
     this.optionActive = option;
     if (id !== this.listIdActive) this.taskIdSelected = id;
     else this.taskIdSelected = '';
@@ -89,18 +87,21 @@ export class ListsComponent implements OnInit {
 
   deleteList(id: string) {
     this.taskService.deleteList(id).subscribe((response: any) => {
-      console.log(response);
       this.listIdActive = '';
+      this.router.navigate(['../']);
+      this.taskService
+        .getLists()
+        .subscribe((lists: List[]) => {
+          this.lists = lists;
+          this.tasks = null;
+        });
     });
   }
 
   deleteTask(id: string) {
     this.taskService
       .deleteTask(this.listIdActive, id)
-      .subscribe((response: any) => {
-        this.tasks = this.tasks.filter((task) => task._id !== id);
-        console.log(response);
-      });
+      .subscribe((response: any) => this.tasks = this.tasks.filter((task) => task._id !== id));
   }
 
   logout() {

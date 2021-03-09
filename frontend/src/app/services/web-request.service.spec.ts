@@ -3,7 +3,6 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-
 import { WebRequestService } from './web-request.service';
 
 describe('WebRequestService', () => {
@@ -20,7 +19,7 @@ describe('WebRequestService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('should perform get correctly', fakeAsync(
+  it('should perform get correctly', fakeAsync(
     inject(
       [WebRequestService, HttpTestingController],
       (
@@ -42,8 +41,6 @@ describe('WebRequestService', () => {
         requestWrapper.flush(responseObject);
 
         tick();
-        console.log(requestWrapper);
-        console.log(response);
         expect(requestWrapper.request.method).toEqual('GET');
         expect(response).toEqual(responseObject);
       }
@@ -75,8 +72,6 @@ describe('WebRequestService', () => {
         requestWrapper.flush(responseObject);
 
         tick();
-        console.log(requestWrapper);
-        console.log(response);
         expect(requestWrapper.request.method).toEqual('POST');
         expect(response.body).toEqual(responseObject);
         expect(response.status).toBe(200);
@@ -109,8 +104,6 @@ describe('WebRequestService', () => {
         requestWrapper.flush(responseObject);
 
         tick();
-        console.log(requestWrapper);
-        console.log(response);
         expect(requestWrapper.request.method).toEqual('POST');
         expect(response.body).toEqual(responseObject);
         expect(response.status).toBe(200);

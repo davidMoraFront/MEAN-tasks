@@ -1,3 +1,4 @@
+import { Task } from './../../models/task.model';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ModalService } from './service/modal.service';
 import { TaskService } from './../../services/task.service';
@@ -8,11 +9,11 @@ import {
   OnChanges,
   Output,
   EventEmitter,
-  Renderer2,
   ViewChild,
   ElementRef,
 } from '@angular/core';
 import { Observable } from 'rxjs';
+import { List } from 'src/app/models/list.model';
 
 @Component({
   selector: 'app-modal-options',
@@ -49,58 +50,55 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
   }
 
   close() {
-    this.titleInput.nativeElement.value = '';
+    if (this.titleInput) this.titleInput.nativeElement.value = '';
     this.modalService.close();
   }
 
   newList(title: string) {
     this.subs = this.taskService
       .createList(title)
-      .subscribe((response: any) => console.log(response));
+      .subscribe((response: List) => this.res.emit(response._id));
   }
 
   editList(title: string) {
     this.subs = this.taskService
       .updateList(this.listId, title)
-      .subscribe((response: any) => console.log(response));
+      .subscribe(() => this.res.emit(this.listId));
   }
 
   newTask(title: string) {
     console.log(this.listId);
     this.subs = this.taskService
       .createTask(this.listId, title)
-      .subscribe((response: any) => console.log(response));
+      .subscribe((response: Task) => this.res.emit(response._listId));
   }
 
   editTask(id: string, title: string) {
     this.subs = this.taskService
       .updateTask(this.listId, id, title)
-      .subscribe((response: any) => console.log(response));
+      .subscribe(() => this.res.emit(this.listId));
   }
 
   showOption(option: string): void {
     switch (option) {
       case 'newList': {
         this.titleModal = 'New List';
-        this.placeholder = 'Enter list name';
         break;
       }
       case 'editList': {
         this.titleModal = 'Edit List';
-        this.placeholder = 'Enter list name';
         break;
       }
       case 'newTask': {
         this.titleModal = 'New Task';
-        this.placeholder = 'Enter task name';
         break;
       }
       case 'editTask': {
         this.titleModal = 'Edit Task';
-        this.placeholder = 'Enter task name';
         break;
       }
     }
+    this.placeholder = 'Enter list name';
   }
 
   switchOption(title: string) {
@@ -122,7 +120,6 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
         break;
       }
     }
-    this.res.emit(this.listId);
     this.close();
   }
 }

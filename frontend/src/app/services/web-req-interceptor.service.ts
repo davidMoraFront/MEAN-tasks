@@ -75,7 +75,7 @@ export class WebReqInterceptorService implements HttpInterceptor {
     if (token) {
       // append the access token to the request header
       return request.clone({ setHeaders: { 'x-access-token': token } });
-    }
+    }console.log("request:", request);
     return request;
   }
 }

@@ -22,12 +22,7 @@ const routes: Routes = [
         ],
       },
     ],
-  },
-  // { path: 'lists/:listId', component: ListsComponent },
-  // { path: 'lists/:listId/tasks', component: ListsComponent },
-  // { path: 'new-list', component: ModalOptionsComponent },
-  // { path: 'new-list', component: ModalOptionsComponent },
-  // { path: 'edit-list/:id', component: ModalOptionsComponent },
+  }
 ];
 
 @NgModule({

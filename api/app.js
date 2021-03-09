@@ -16,8 +16,8 @@ const jwt = require("jsonwebtoken");
 /* MIDDLEWARE  */
 
 // Load middleware
-// app.use(express.json());
-app.use(bodyParser.json());
+app.use(express.json());
+// app.use(bodyParser.json());
 
 // CORS header middleware
 app.use(function (req, res, next) {

@@ -23,7 +23,6 @@ import { WebReqInterceptorService } from './services/web-req-interceptor.service
       multi: true,
     },
   ],
-  bootstrap: [AppComponent],
-  // schemas: [NO_ERRORS_SCHEMA],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
