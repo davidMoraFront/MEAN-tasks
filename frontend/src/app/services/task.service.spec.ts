@@ -30,12 +30,10 @@ const mockLists = [{"_id":"6000cf8c4eac53c029515601","title":"new list","_userId
 describe('TaskService', () => {
   let service: TaskService;
   let taskServiceSpy: jasmine.SpyObj<WebRequestService>;
-  // let taskServiceSpyTask: jasmine.SpyObj<TaskService>;
 
   beforeEach(() => {
 
     const spyWebRequestService = jasmine.createSpyObj('WebRequestService', ['get', 'post', 'patch', 'delete']);
-    // const spyTask = jasmine.createSpyObj('TaskService', ['createList']);
 
     const taskServiceStub = () => ({
       getLists: () => ({ subscribe: (f) => f({ mockLists }) }),
@@ -47,12 +45,9 @@ describe('TaskService', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [TaskService, {provide: WebRequestService, useValue: spyWebRequestService}]
-      // providers: [{provide: TaskService, useValue: spyTask}]
-      // providers: [{ provide: TaskService, useValue: taskServiceStub }],
     });
     service = TestBed.inject(TaskService);
     taskServiceSpy = TestBed.inject(WebRequestService) as jasmine.SpyObj<WebRequestService>;
-    // taskServiceSpyTask = TestBed.inject(TaskService) as jasmine.SpyObj<TaskService>;
   });
 
   it('should be created', () => {

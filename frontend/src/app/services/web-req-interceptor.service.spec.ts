@@ -14,11 +14,7 @@ describe('WebReqInterceptorService', () => {
     const spyWebReqInterceptorService = jasmine.createSpyObj('WebReqInterceptorService', ['intercept', 'refreshAccessToken', 'addAuthHeader']);
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
-      providers: [
-        WebReqInterceptorService, 
-        AuthService,
-        // {provide: WebReqInterceptorService, useValue: spyWebReqInterceptorService}
-      ]
+      providers: [WebReqInterceptorService, AuthService]
     });
     service = TestBed.inject(WebReqInterceptorService);
     webReqInterceptorServiceSpy = TestBed.inject(WebReqInterceptorService) as jasmine.SpyObj<WebReqInterceptorService>;
@@ -35,11 +31,6 @@ describe('WebReqInterceptorService', () => {
     expect(service.refreshAccessToken()).toBeTruthy();
   }));
 
-  // it('should intercep refresh-token', fakeAsync(() => {
-  //   webReqInterceptorServiceSpy.intercept.and.returnValue(of(new Observable<any>()));
-  //   expect(empty.length).toEqual(1);
-  // }));
-
   it('should intercep refresh-token with refreshingAccessToken', fakeAsync(() => {
     spyOn(webReqInterceptorServiceSpy, 'refreshAccessToken').and.callThrough();
     service.refreshingAccessToken = true;
@@ -49,7 +40,6 @@ describe('WebReqInterceptorService', () => {
 
   xit('should get addAuthHeader', fakeAsync(() => {
     spyOn(webReqInterceptorServiceSpy, 'addAuthHeader').and.callThrough();
-    // authService.getNewAccessToken().subscribe(res => expect(res).toBeTruthy());
     tick();
     expect(webReqInterceptorServiceSpy.addAuthHeader).toHaveBeenCalled();
   }));

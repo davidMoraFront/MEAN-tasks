@@ -116,7 +116,7 @@ describe(`<${ListsPage.HtmlTagComponent}>`, () => {
 
   it('should do logout', async () => {
     await page.logout();
-    expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/login');
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + 'login');
   });
 
   afterEach(async () => {

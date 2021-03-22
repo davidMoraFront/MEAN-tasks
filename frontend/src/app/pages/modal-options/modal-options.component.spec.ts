@@ -1,7 +1,5 @@
-import { HttpClient, HttpHandler } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ModalOptionsComponent } from './modal-options.component';
 
 describe('ModalOptionsComponent', () => {
@@ -11,7 +9,6 @@ describe('ModalOptionsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ModalOptionsComponent ],
-      // providers: [HttpClient, HttpHandler]
       imports: [HttpClientTestingModule]
     })
     .compileComponents();

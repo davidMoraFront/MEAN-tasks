@@ -12,9 +12,4 @@ describe('ModalService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  // it('should open modal', () => {
-  //   service.open();
-  //   expect(service).toBeTruthy();
-  // });
 });
