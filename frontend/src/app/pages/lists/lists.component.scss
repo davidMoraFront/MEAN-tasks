@@ -7,6 +7,7 @@
   max-width: 1000px;
   max-height: 680px;
   border-radius: 8px;
+  background-color: white;
 
   .sidebar {
     display: flex;
@@ -14,9 +15,11 @@
     justify-content: space-between;
     width: 250px;
     background: white;
-    padding: 40px;
+    padding: 40px 40px 0 40px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
+    overflow: auto;
+    margin-bottom: 120px;
 
     .container-lists {
       .list-menu {
@@ -38,6 +41,13 @@
           }
         }
       }
+    }
+
+    button {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 40px;
+      width: 170px;
     }
   }
 

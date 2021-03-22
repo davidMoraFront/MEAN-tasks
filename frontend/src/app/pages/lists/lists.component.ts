@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { AuthService } from './../../services/auth.service';
 import { ModalService } from './../modal-options/service/modal.service';
 import { TaskService } from './../../services/task.service';
@@ -88,7 +89,7 @@ export class ListsComponent implements OnInit {
   deleteList(id: string) {
     this.taskService.deleteList(id).subscribe((response: any) => {
       this.listIdActive = '';
-      this.router.navigate(['../']);
+      // this.router.navigate(['../']);
       this.taskService
         .getLists()
         .subscribe((lists: List[]) => {

@@ -4,7 +4,7 @@ Specifications in api README.
 
 ## frontend
 
-Specifications in FRONTEND readme
+Specifications in frontend README.
 
 ## Development server
 

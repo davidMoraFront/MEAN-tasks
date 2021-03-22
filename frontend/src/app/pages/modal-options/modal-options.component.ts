@@ -98,7 +98,7 @@ export class ModalOptionsComponent implements OnInit, OnChanges {
         break;
       }
     }
-    this.placeholder = 'Enter list name';
+    this.placeholder = 'Enter name';
   }
 
   switchOption(title: string) {

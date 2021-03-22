@@ -1,16 +1,16 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe(`<${AppPage.HtmlTagComponent}>`, () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('task-manager-frontend app is running!');
+  it('should navigate to login url', async () => {
+    await page.navigateTo();
+    expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + 'login');
   });
 
   afterEach(async () => {
