@@ -42,10 +42,7 @@ describe('ListsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ListsComponent ],
       imports: [HttpClientTestingModule, RouterTestingModule],
-      providers: [
-        TaskService, AuthService,
-        // { provide: ActivatedRoute, useValue: {children: [{1: '1'}]} }
-      ],
+      providers: [TaskService, AuthService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
 
