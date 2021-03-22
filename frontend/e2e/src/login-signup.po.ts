@@ -11,10 +11,6 @@ export class LoginSignupPage {
     return element(by.css(str)).getText() as Promise<string>;
   }
 
-  // getTitleText(): Promise<string> {
-  //   return element(by.css('.title')).getText() as Promise<string>;
-  // }
-
   getEmailPlaceholder(): Promise<string> {
     return element(by.css('[type="email"]')).getAttribute('placeholder') as Promise<string>;
   }
@@ -23,25 +19,9 @@ export class LoginSignupPage {
     return element(by.css('[type="password"]')).getAttribute('placeholder') as Promise<string>;
   }
 
-  // getButtonText(): Promise<string> {
-  //   return element(by.css('button')).getText() as Promise<string>;
-  // }
-
-  // getBeforeLinkText(): Promise<string> {
-  //   return element(by.css('.has-text-grey span:first-child')).getText() as Promise<string>;
-  // }
-
   getLink(): Promise<string> {
     return element(by.css('.has-text-grey a')).getAttribute('href') as Promise<string>;
   }
-
-  // getLinkText(): Promise<string> {
-  //   return element(by.css('.has-text-grey a')).getText() as Promise<string>;
-  // }
-
-  // getAfterLinkText(): Promise<string> {
-  //   return element(by.css('.has-text-grey span:last-child')).getText() as Promise<string>;
-  // }
 
   setEmail(email: string): Promise<void> {
     return element(by.css('[type="email"]')).sendKeys(email) as Promise<void>;
